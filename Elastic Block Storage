@@ -23,11 +23,94 @@ EBS Volume behave like RAW, Unformatted, external block storage devices that you
 An EBS Volume data is replicated by AWS across multiple servers in the Same AZ to prevent data loss resulting from any Single AWS Component Failure.
 
 EBS Volume Types----
-1.  SSD Backed Volume
-    i - General Purpose SSD ( gp2 )
-    ii- Provisioned IOPS SSD ( io1 )
-2.  HDD Backed Volume
+1.  SSD ( Solid State Drive ) Backed Volume ( Bootable Drive )
+    i - General Purpose SSD ( gp2 ) ( Defaullt Value  30 GB for Windows EC2 instance )
+    ii- Provisioned IOPS SSD ( io1 ) ( Best IOPS provided in this version )
+2.  HDD ( Hard disk Drive ) Backed Volume  ( Non- Bootable Drive )
     i - Throughput Optimized HDD ( st1 )
     ii - Cold HDD ( sc1 )
-3.  Magnetic Standard
+3.  Magnetic Standard ( after 2012 EBS Standard drive beacome magnetic standard ) ( Bootable Drive )
+we can define EBS volune on the basis of two categorary 
+i - IPOS - Input Output per second. 
+ii - Throughput - MB/s
+
+
+General Purpose SSD ( gp2 )
+---> GP2 is the default EBS Volume type for the amazon EC2 Instance. 
+---> GP2 Volumes are backed by SSDs
+---> General Purpose, balances both price and performance.
+---> Ratio of 3IOPS/GB with upto 10,000 IOPS. 
+---> Boot Volume having low latency.
+---> Volume Size - 1 GB - 16 TB
+---> Price - $ 0.10 GB/month ( Price vary through the region )
+
+Provisioned  IOPS SSD ( io1 )
+---> These Volumes are ideal for both IOPS intensive and throughput intensive workloads that require extremely low latency or for mission Critical applications.
+---> Designed for I/O intensive applications such as large relational or NoSQL Databases. 
+---> Use if you need more than 10,000 IOPS.
+---> Can provision upto 32,000 IOPS per volume ( 64,000 IOPS )
+---> Volume Size - 4 GB -- 16 TB.
+---> Price -- $ 0.125/GB/month ( Price vary through the region )
+
+Throughput Optimized HDD ( st1 )
+---> st1 is backed by Hard disk drives and is ideal for frequently accessed, throughput intensive workloads with large datasets.
+---> st1 Volumes deliver performance in term of throughput, measured in MB/s.
+---> Big data, Data Warehouse, log processing.
+---> It cannot be a Boot Volume.
+---> Can provisioned upto 500 IOPS per volume. 
+---> Volume Size - 500GB - 16 TB 
+---> Price - $ 0.045 GB/Month.
+
+Cold HDD ( sc1 )
+sc1  is also backed by HDD and provides the lowest cost per GB of all EBS Volume types. 
+---> Lowest Cost Storage for infreqent access Workloads.
+---> used for file servers.
+---> Cannot be a boot volume.
+---> Can provisioned upto 250 IOPS per volume
+---> Volume size - 500 GB - 16 TB.
+---> Price -- $ 0.025/GB/Month.
+
+
+Magnetic Standard
+---> Lowest Cost per GB of all EBS Volume type that is Bootable. 
+---> Magnetic Volumes are Ideal for Workloads where data is accessed infrequently, and applications where the lowest storage cost is important. 
+---> Price - $ 0.05 per GB/month.
+---> Volume Size -- 1 GB - 1 TB
+---> Max IOPS/Volume - 40 - 200
+
+EBS Snapshot 
+---> EBS Snapshots are point-in-time Images/Copies of your EBS Volume.
+---> Any data written to the volume after the snapshot process is initiated, will not be included in the resulting snapshot ( but will be included in future, incremental update).
+---> Per AWS account, upto 5000 EBS Volumes Can be created.
+---> Per account, upto 10,000 EBS Snapshots can be created. 
+---> EBS Snapshots are stored on S3, however you cannot access them directly. You Can Only access them through EC2 APIs. 
+---> While EBS Volumes are AZ Specific, Snapshots are Region Specific. 
+---> Any AZ in Region can use Snapshots to Create EBS Volume. 
+---> To migrate an EBS from one AZ to another, Create a Snapshot ( Region Specific ) and Create an EBS Volume from the Sanpshot in the intended AZ.
+---> You Can Create a Snapshot to an EBS Volume of the Same or Larger Size than the Original Volume Size from Which the snapshot was intially Created. 
+---> You can take a Snapshot of a Non-root EBS Volume while the volume is in use on a running EC2 instance.
+---> This means you can still access it while the Sanpshot is being processed.
+---> However the snapshot will only include data that is already  written to your volume. 
+---> The Snapshot is Created Immediately, but it may stay in pending status until the full Snapshot is completed. This may takes, few hours to complete, specically for 
+     the first time Sanpshot of a Volume. 
+---> During the period, when the Snapshot status is Pending, You can still access the volume (non-root), but I/O might be slower because of the Snapshot activity.
+---> While in pending state, an in-progress snapshot will not include data from ongoing reads and write to the volume.
+---> To take complete snapshot of your non-root EBS Volume. 
+     --> Stop or umount the volume.
+ To Create a Snapshot for a Root EBS Volume, You must stop the instance first then take the Snapshot.
+
+---> EBS Snapshot are stored incrementally.
+---> For low cost storage on S3, and a Guarantee to be able to fully restore data from the Snapshots.
+---> What you need is a Single Snapshot, then further Snapshots will only carry the Changed Blocks(Incremental Updates)
+---> Therefore you do not need to have multiple full/complete copies of the Snapshot.
+---> You are charged for data transferred to S3 from your EBS Volume you are taking Snapshot.
+---> Snapshot stored in S3.
+---> First snapshot is a done. Subsequent Snapshots are Incremental.
+---> Deleting Sanpshot will only remove data Exculsive to that Snapshot. 
+
+Encryption of EBS Volume
+
+
+
+
     
