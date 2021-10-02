@@ -1,0 +1,33 @@
+EBS ( Elastic Block Storage )
+
+Two types of blocks store devices are available for EC2 -->
+
+1. Elastic Block Store 
+   ---> Persistent 
+   ---> Network attached Virtual Drive.
+2. Instance store backed EC2. Basically the virtual hard drive on the host allocated to the EC2 instance. 
+   ---> Limited to 10 GB per Drive. 
+   ---> Ephermeral Storage ( Non-Persistent Storage )
+   ---> The EC2 instance can't be stopped, can only be rebooted or terminated, terminate will delete data. 
+
+Root/Boot Volume ---> that can be attacched to the O.S.
+
+EBS backed - means OS is resided in the EBS. 
+
+EBS Volume behave like RAW, Unformatted, external block storage devices that you can attach to your EC2 instance.
+---> EBS Volumes are block storage devices suitable for database style data that requires frequent reads & writes.
+---> EBS Volumes are attached to your EC2 instances through the AWS Network, like Virtual hard drives. 
+---> An EBS Volume can attach to a Single EC2 instance Only at a time. 
+---> Both EBS Volume and EC2 instance must be in the same AZ. 
+
+An EBS Volume data is replicated by AWS across multiple servers in the Same AZ to prevent data loss resulting from any Single AWS Component Failure.
+
+EBS Volume Types----
+1.  SSD Backed Volume
+    i - General Purpose SSD ( gp2 )
+    ii- Provisioned IOPS SSD ( io1 )
+2.  HDD Backed Volume
+    i - Throughput Optimized HDD ( st1 )
+    ii - Cold HDD ( sc1 )
+3.  Magnetic Standard
+    
