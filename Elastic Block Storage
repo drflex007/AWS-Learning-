@@ -109,7 +109,29 @@ EBS Snapshot
 ---> Deleting Sanpshot will only remove data Exculsive to that Snapshot. 
 
 Encryption of EBS Volume
-
+---> EBS encryption is supported on all EBS Volume types and all EC2 instance families.
+---> Snapshots of Encrypted Volumes are also encrypted. 
+---> Creating an EBS Volume from an Encrypted Snapshot will result it an encrypted volume. 
+---> Data Encryption at rest means, encryption data while it is stored on the data storage device. 
+---> There are many ways you can encrypt data on an EBS Volume at Rest, While the volume is attached to on EC2 Instance.
+    ---> use 3rd party EBS Volume.
+    ---> Encryption Tools.
+    ---> Use encrypted EBS Volumes.
+    ---> Use encryption at the OS Level.
+    ---> Encrypt data at the application level before storing it to the volume.
+    ---> Use Encrypted file system on the top of the EBS Volume.
+ ---> Encrypted Volume are accessed exactly like unencrypted Ones, basically encryption is handled transparently.
+ ---> You can attach an encrypted and unencrypted volumes to the same EC2 instance.
+ ---> Remember that the EBS Volumes are not physically attached to the EC2 instance, rather they are virtually attached through the EBS infrasturture.
+ ---> This means when you encrypt data on an EBS Volume, data is actually. encrypted on the EC2 Instance then transferred, encrypted to be stored on the EBS Volume.
+ ---> This means data in transit b/w EC2 and encrypted EBS Volume is also encrypted. 
+ ---> There is no direct way to change the encrption state of the volume. 
+ ---> To Change the state(indirectly) you need to  following either of the following two ways- 
+     i- Attach a new, encrypted, EBS Volume to the EC2 Instance that has the data to be encrypted then,
+ ---> Mount the New Volume to the EC2 Instance
+ ---> Copy the data from the encrypted volume to the New Volume.
+ ---> Both Volumes must be on the same EC2 Instance. 
+    
 
 
 
