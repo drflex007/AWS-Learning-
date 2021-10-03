@@ -136,7 +136,25 @@ Encryption of EBS Volume
        ----> Copy the Snapshot and Choose encryption for the new copy, this will create an Encrypted Copy of the Snapshot.
        ----> Use this new Copy to create an EBS Volume, which will be encrypted too.
        ----> Attach the new, encrypted EBS Volume to the EC2 Instance. 
+Root EBS Volume Encryption
+----> There is no direct wat to change the Encryption state of a Volume.
+---> There is an indirect Workaround to this ---
+    ---> Launch the instance with the EBS Volume Required.
+    ---> Do Whatever patching or install applications.
+    ---> Create an AMI from the EC2 instance. 
+    ---> Copy the AMI and Choose encryption while copying.
+    ---> This Results it an encrypted  AMI that is private ( Yours Only ).
+    ---> Use the encrypted AMI to launch new EC2 instances which will have these EBS root Volume Encrypted. 
 
+EBS Encryption Key 
+---> To encrypt a Volume or a Snpashot. You need an encryption key, these keys are called Customer Masters Key ( CMK ) and are managed by AWS Key Management Service ( KMS )
+---> When encrypting the first EBS Volume,AWS KMS Creates a default CMK Key.
+---> This key is used for your first Volume Encryption, Encryption of Snapshots created from this volumes and subsequent volumes created from these snapshots.
+---> After that each newly Encrypted Volume is encrypted with unique/ separate AES-256 bit Encryption key. this key is used to encrypt the volume, its snapshots, and any
+volumes created of its snapshots. 
+
+Changing Encryption Key 
+---> You Cannot change the 
 
 
     
