@@ -128,10 +128,14 @@ Encryption of EBS Volume
  ---> There is no direct way to change the encrption state of the volume. 
  ---> To Change the state(indirectly) you need to  following either of the following two ways- 
      i- Attach a new, encrypted, EBS Volume to the EC2 Instance that has the data to be encrypted then,
- ---> Mount the New Volume to the EC2 Instance
- ---> Copy the data from the encrypted volume to the New Volume.
- ---> Both Volumes must be on the same EC2 Instance. 
-    
+       ---> Mount the New Volume to the EC2 Instance
+       ---> Copy the data from the encrypted volume to the New Volume.
+       ---> Both Volumes must be on the same EC2 Instance. 
+     ii- Second method 
+       ----> Create a Snapshot of the unencrypted volume. 
+       ----> Copy the Snapshot and Choose encryption for the new copy, this will create an Encrypted Copy of the Snapshot.
+       ----> Use this new Copy to create an EBS Volume, which will be encrypted too.
+       ----> Attach the new, encrypted EBS Volume to the EC2 Instance. 
 
 
 
