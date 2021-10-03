@@ -1,0 +1,18 @@
+Autosacling 
+
+Fault Tolerance 
+High Availability.
+
+Creating group of EC2 instances that can scale up or down depending on conditions you set. 
+---> Enable Elasticity by scaling horizontally through adding or terminating EC2 instances.
+---> Autoscaling ensures that you have the right number of AWS EC2 instances for your needs at all time.
+---> Autoscaling helps you save cost by cutting down the number of EC2 instances when not needed,and scaling out to add more instances only when it is required. 
+
+Autoscaling Components
+1. Launch Configuration --> Like Instance type, AMI, Keypair, Security Group.
+2. Autoscaling Group ---> Group Name, Group Size, VPC, Subnet, Health Check Period. 
+3. Scaling Policy ---> Metric Type, Target Value.
+
+Autoscaling Balancing
+---> If Autoscaling finds that the number of EC2 instances lanched by ASG into Subject AZs is not balanced (EC2 instances are not evenly distributed) Autoscaling do rebalancing 
+Activity by itself
