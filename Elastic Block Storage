@@ -154,7 +154,31 @@ EBS Encryption Key
 volumes created of its snapshots. 
 
 Changing Encryption Key 
----> You Cannot change the 
+---> You Cannot change the Encrption ( CMK )key used to encrypt an existing encrypted Snapshot or encrypted EBS Volume.
+---> If you want to change the key. Create a Copy of the Snapshot and Specify, during the Copy process, that you want to re-encrypt the Copy with a different key. 
+---> This comes in handy when you have a Snapshot that was encrypted using your default CMK key, and you want to change the key in order to be able to share the snapshot
+with other account. 
+
+
+Sharing EBS Snapshot
+---> By default, Only the account owner can create volumes from the account snapshots.
+---> You can share your unencrypted snapshots with the AWS Community by making them public.
+---> Also you can share your unencrypted snapshot with a selected AWS Account by making them private then selecting the AWS accounts to share with. 
+---> You can not make your encrypted snapshots public.
+---> You cannot make a Snapshot of an encrypted EBS Volume public on  AWS.
+---> You can share your encrypted snapshot with specific AWS accounts as follows- 
+    ---> Make sure that you use a non-default/Custom CMK key to encrypt the snapshot, not the default CMK Key ( AWS will not allow the sharing if defualt CMK is used.)
+    ---> Configure Cross account permissions in order to give the account(s) with which you want to share the snapshot, access to the Custom CMK Key used to encrypt the 
+    snapshot.
+    ----> Without this, the other accounts will not be able to copy the snapshot, nor will be able to create volumes of the snapshot.
+---> AWS will not allow you to solve snapshots encrypted using your default CMK key.
+---> for the AWS account(s) with whom an encrypeted snapshot is shared. 
+    ---> they first create thier own copies the snapshot.
+    ---> they use that copy to restore/create EBS Volume.
+---> You can only make a copy of the Snapshot when it has been fully saved to S3.(its status show as complete) and not during the snapshot's pending status 
+     ( When data blocks are being moved to S3).
+---> Amazon S3 Server Side Encryotion (SSE) protect the Snapshot data-in transit while copying. 
+---> You can have upto 5 Snapshot Copy Request Running in a Single destination per account. 
 
 
     
