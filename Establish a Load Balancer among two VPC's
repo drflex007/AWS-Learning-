@@ -1,0 +1,10 @@
+1. Create two VPC's i.e. VPC1 and VPC2
+2. Create two subnets in VPC1, and One in VPC2.
+3. Create Internet Gateway for VPC1 & VPC2
+4. Edit Route Table and add 0.0.0.0/0
+5. Create Peering Connection & Update Route Table 
+6. Create Three EC2 instances One in Each Subnet.
+7. Install Webserver IIS, and Create Webpage.
+8. Create Application load Balancer, Target Type - IP
+9. Registered Private IP's  of EC2's in Target Group.
+10. Copy DNS of Load Balancer and paste in WEB Browser. 
