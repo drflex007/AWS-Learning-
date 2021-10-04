@@ -1,0 +1,9 @@
+Load Balancer distributes the web traffic to the available server.
+or 
+Load Balcing refers to efficient distributing incoming traffic across a group of backends server. 
+
+Four types of load balancer-
+1. Application Load Balancer ( Comes in 2012 ) ( Works on Layer 7 ) ( HTTP , HTTPS )
+2. Network Load Balancer ( Layer 4 - Transport Layer ) ( TCP and UDP , TLS )
+3. Classic Load Balancer ( Previous generation - Aug 22 2022 exit from AWS ) ( HTTP, HTTPS, TCP and TLS )
+4. Gateway Load Balancer 
