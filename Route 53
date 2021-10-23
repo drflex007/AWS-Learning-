@@ -22,3 +22,8 @@ Route 53 performs three main functions
    --> You can use Route 53 for any Combination of these functions--
       --> For eg. You can use Route 53 both to register your domain name and to route internet traffic for the domain.
       --> or you can use Route 53 to route internet traffic for a domain that you registered with another domain Registrar
+
+When you register a domain with Route 53, the service automatically makes itself the DNS Service for the domain by doing the following :- 
+   ---> It creates a hosted zone that has the same name as your domain. 
+   ---> It assigns a set of four name servers to the hosted zone, unique to the account. 
+       ---> when someone uses a browser to access your website, these name servers inform the browser where to find your Resources, Such as a web server or an Amazon S3 Bucket.
