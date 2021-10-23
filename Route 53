@@ -27,3 +27,24 @@ When you register a domain with Route 53, the service automatically makes itself
    ---> It creates a hosted zone that has the same name as your domain. 
    ---> It assigns a set of four name servers to the hosted zone, unique to the account. 
        ---> when someone uses a browser to access your website, these name servers inform the browser where to find your Resources, Such as a web server or an Amazon S3 Bucket.
+   ---> It gets the name servers from the hosted zone and adds them to the domain.
+   
+   AWS Supports -
+   1. Generic Top Level Domains
+   2. Geographic Top Level Domains
+   
+Registering a domain with Route 53   
+
+--> You can register a domain with Route 53, if the TLD is included on the supported TLD list.
+--> If the TLD is not included, you can't register the domain with Route53.
+
+using Route-53 as your Service.
+--> You can use Route 53 as the DNS Service for any domain, even if the TLD for the domain is not included on the Supported TLD list.
+
+Note :- Each Amazon Route 53 account is limited to a maximum of 500 Hosted Zones and 10,000 resource record Sets per hosted zone. You can increase this limit by reqesting to
+AWS.
+
+STEPS To CONFIGURE ROUTE - 53
+1. You need to Register a domain, this can be Route 53, or another DNS Registar, but then you connect your domain name in that register to Route 53.
+2. Create Hosted Zone on Route 53, this is done automatically if you registerd your domain using Route 53.
+   ---> Inside the hosted zone, you need to Create Record Sets.
