@@ -45,6 +45,15 @@ Note :- Each Amazon Route 53 account is limited to a maximum of 500 Hosted Zones
 AWS.
 
 STEPS To CONFIGURE ROUTE - 53
-1. You need to Register a domain, this can be Route 53, or another DNS Registar, but then you connect your domain name in that register to Route 53.
+1. You need to Register a domain, this can be Route 53, or another DNS Registar, but then you connect your domain name in that registar to Route 53.
 2. Create Hosted Zone on Route 53, this is done automatically if you registerd your domain using Route 53.
    ---> Inside the hosted zone, you need to Create Record Sets.
+
+Delegate to Route 53
+--> This step connects everything and make it works.
+--> Connect the domain name to the Route 53 hosted zone - this is called delegation.
+    --> update your domain registar with the connect name servers for your Route 53 Hosted Zone.
+--> No Other Customer hosted zone will share this delegation set with you.
+--> Doing this means Route 53 DNS, Service will be Serving DNS traffic for the domain of the hosted zone.
+--> if you registered your domain with a different registar, you need to configure the Route 53 NS Servers list in your Registrar DNS Database for your Domain.
+
