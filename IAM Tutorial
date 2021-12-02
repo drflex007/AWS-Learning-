@@ -1,0 +1,4 @@
+IAM refers to a framework or Policies and technologies for ensuring that the proper people in an Organisation have the appropriate access to technology Resources.
+OR
+AWS Identify and access Management is a Web Service that helps you securely Control access to AWS Resources. You use IAM to Control who is authenticated ( Signed-in ) and 
+authorized ( has permission ) to use Resources. 
